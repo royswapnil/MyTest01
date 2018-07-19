@@ -6,9 +6,7 @@
 
   </PropertyGroup>
 
-  <PropertyGroup>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-  </PropertyGroup>
+ 
 
   
 
