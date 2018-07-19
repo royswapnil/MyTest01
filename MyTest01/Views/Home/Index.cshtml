@@ -1,0 +1,185 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    var obj = ViewBag.GridData;
+    string msg = "";
+    if (ViewData["Message"] != null)
+    {
+        msg = ViewData["Message"].ToString();
+    }
+}
+
+<style>
+    .table th,
+    .table td {
+        font-family: activesans-light !important;
+        font-weight: 400;
+        padding: 0.25rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .fontclass {
+        font-family: activesans-regular !important;
+    }
+
+
+    .the-legend {
+        border-style: none;
+        border-width: 0;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+        width: auto;
+        padding: 0 10px;
+    }
+
+    .the-fieldset {
+        border: 2px solid #dee2e6;
+        padding: 5px;
+        border-radius: 8px;
+    }
+</style>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @if (obj != null)
+    {
+        <p>@msg</p>
+
+        <fieldset class="containerBox">
+            <h4 style="color:#3d70b2;">Kroger Data Exports</h4>
+
+
+            <fieldset class="the-fieldset">
+                <legend class="the-legend">Filter</legend>
+                <label class="col-md-1 control-label" for="radios">File Type</label>
+                <div class="col-md-1">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Type", "All", true)All
+                    </label>
+                </div>
+                <div class="col-md-1">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Type", ".XLS") .XLS
+                    </label>
+                </div>
+                <div class="col-md-1">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Type", ".CSV") .CSV
+                    </label>
+                </div>
+                <div class="col-md-1">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Type", ".PDF") .PDF
+                    </label>
+                </div>
+                <label class="col-md-1 control-label" for="radios">Status</label>
+                <div class="col-md-1">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Status", "All", true) All
+                    </label>
+                </div>
+                <div class="col-md-1" style="width:12%">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Status", "Published") Published
+                    </label>
+                </div>
+                <div class="col-md-1" style="width:12%">
+                    <label class="radio-inline fontclass">
+                        @Html.RadioButton("Status", "Downloaded") Downloaded
+                    </label>
+                </div>
+                <div class="col-md-2" style="padding-bottom:5px;">
+                    <input type="submit" value="Apply" id="btn-submit" class="btn btn-primary" />
+                    <input type="button" value="Reset" id="btn-reset" class="btn btn-primary" />
+                </div>
+            </fieldset>
+
+            <br />
+
+            @*- All  @Html.RadioButton("Allfile", "All") Xlsx @Html.RadioButton("Allfile", "xlsx") Csv @Html.RadioButton("Allfile", "csv")
+                Status - All @Html.RadioButton("Allfile", "AllS") Published @Html.RadioButton("Allfile", "PUBLISHED") Downloaded @Html.RadioButton("Allfile", "DOWNLOADED")*@
+
+
+            <table class="table" style="font-size:13px;">
+                <tr style="background-color: #3d70b2; color:white">
+                    <th class="header-label">
+                        @Html.Label("TRN#")
+                    </th>
+                    <th class="header-label">
+                        @Html.Label("Type")
+                    </th>
+                    <th class="header-label">
+                        @Html.Label("Status")
+                    </th>
+                    <th class="header-label">
+                        @Html.Label("Division")
+                    </th>
+
+                    <th class="header-label">
+                        @Html.Label("Period")
+                    </th>
+
+                    <th class="header-label">
+                        @Html.Label("File Name")
+                    </th>
+                    <th class="header-label">
+                        @Html.Label("Action")
+                    </th>
+
+                    <th class="header-label">
+                        @Html.Label("Published Date")
+                    </th>
+                </tr>
+                @if (obj != null)
+                {
+                    foreach (var row in obj)
+                    {
+                        string link = (string)row.FILENAME;
+                        <tr>
+                            <td>@row.ID</td>
+                            <td>@row.TYPE</td>
+                            <td>@row.STATUS</td>
+                            <td>@row.GROUP_NAME</td>
+                            <td>@row.PERIODS</td>
+                            <td>
+                                @Html.ActionLink(link, "DownloadFile", "Home", routeValues: new
+                                {
+                                    fileName = link
+                                }, htmlAttributes: new { @title = "Click here to download the file" })
+                            </td>
+                            <td>
+                                <a href='@Url.Action("DownloadFile", "Home", new { fileName = link })' data-toggle="tooltip" title="Click here to download the file">
+                                    <img src='~/images/Download.png' />
+                                </a>
+                            </td>
+
+                            <td>@row.PUBLISH_DATE</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </fieldset>
+    }
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            window.onbeforeunload = function () { location.reload(); };
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+
+            $("#btn-reset").click(function () {
+                window.location.href = "/Home/Index";
+            });
+
+        });
+
+    </script>
+}
+
