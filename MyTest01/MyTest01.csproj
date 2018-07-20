@@ -2,17 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
-
   </PropertyGroup>
 
-  <PropertyGroup>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview1-final" />
