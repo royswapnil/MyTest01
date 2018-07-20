@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
-
   </PropertyGroup>
 
   <PropertyGroup>
@@ -19,17 +17,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="obj\Release\netcoreapp2.1\MyTest01.dll" />
-    <None Include="obj\Release\netcoreapp2.1\MyTest01.pdb" />
-    <None Include="obj\Release\netcoreapp2.1\MyTest01.PrecompiledViews.dll" />
-    <None Include="obj\Release\netcoreapp2.1\MyTest01.PrecompiledViews.pdb" />
-    <None Include="obj\Release\netcoreapp2.1\win-x64\MyTest01.dll" />
-    <None Include="obj\Release\netcoreapp2.1\win-x64\MyTest01.pdb" />
-    <None Include="obj\Release\netcoreapp2.1\win-x64\MyTest01.PrecompiledViews.dll" />
-    <None Include="obj\Release\netcoreapp2.1\win-x64\MyTest01.PrecompiledViews.pdb" />
   </ItemGroup>
 
 </Project>
