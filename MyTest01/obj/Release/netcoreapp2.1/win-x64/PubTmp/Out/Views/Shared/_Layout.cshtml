@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/css/custom.css" rel="stylesheet">
+    <style>
+        .center-block {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .logotext {
+            font-family: activesans-Bold, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 8px;
+            color: #fff;
+        }
+
+        .btn {
+            background-color: #3d70b2 !important;
+        }
+
+            .btn:hover {
+                background-color: #5596e6 !important;
+            }
+
+        .lin {
+            color: black;
+            font-size: 14px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: none;
+        }
+
+
+
+
+        a:hover {
+            color: #5596e6 !important;
+            text-decoration: none;
+        }
+
+        .menutext {
+            position: relative;
+            top: 3px;
+            padding-left: 5px;
+        }
+
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            width: 220px;
+            margin: 0;
+            padding: 0;
+            padding-top: 10px;
+            list-style: none;
+        }
+
+            .sidebar-nav li {
+                position: relative;
+                line-height: 20px;
+                display: inline-block;
+                width: 100%;
+            }
+    </style>
+
+    <title>@ViewData["Title"] Active Business and Customer Data Exports</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body style="padding-top:0px !important; color:black !important; font-family:activesans-text, Arial, Helvetica, sans-serif;">
+    <script type="text/javascript">
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "150px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+    </script>
+    <nav id="navhead" class="navbar navbar-default" style="background-color:#152935; height:54px; border-color:#152935; border-radius:0">
+        <div class="row">
+            <div class="col-md-7" style="padding-top:20px;">
+                <div class="navbar-header">
+                    <div class="col-md-1" style="font-size:20px;">
+                        <span onclick="openNav()" style="font-size:20px;cursor:pointer;color:white;top:-5px;" class="glyphicon glyphicon-menu-hamburger"></span>
+                    </div>
+                    <div class="col-md-11" style="padding-left:0px;">
+                        <a class="navbar-brand logotext" style="color:white; padding-top:0px;" href='@Url.Action("Index", "Home")'>Active Business and Customer Data Exports    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 float-md-right" style="text-align: right !important; padding-top:5px;">
+                <a href='@Url.Action("ChangePassword", "Account")' style="color:white; padding-top:0px;"><img src='~/images/Icons_User_White.png' style="width: 44px;" /></a>
+                <span style="color:white;">@ViewData["UserName"].ToString()</span>
+            </div>
+
+            <div class="col-md-1 float-md-right" style="text-align: right !important; padding-top:5px;">
+                <a href='@Url.Action("Login", "Account")' style="text-align: right !important; color:white; padding-top:0px;"><img src='~/images/Icons_Exit_White.png' style="width: 44px;" /></a>
+            </div>
+        </div>
+    </nav>
+    <div id="mySidenav" class="sidenav" style="background-color:white; border-right:1px thin #3d70b2; box-shadow: -1px -1px 35px -20px;">
+        <ul class="sidebar-nav">
+            <li style="padding-top:23px;">
+                <span onclick="closeNav()" style="font-family:activesans-thin; font-size:45px; cursor:pointer;color:#3d70b2; padding-left:3px;" class="closebtn">&times;</span>
+            </li>
+            <li>
+                <a class="lin" style="text-decoration:none;" href=#><img src='~/images/BillingDashboard_Grey.png' style="width:30px;" /><span class="menutext">Dashboard</span></a>
+            </li>
+            <li>
+                <a class="lin" style="text-decoration:none;" href=#><img src='~/images/edi_report_grey.png' style="width:30px;" /><span class="menutext">EDI Report</span></a>
+            </li>
+            <li>
+                <a class="lin" style="text-decoration:none;" href=#><img src='~/images/Icons_Spot-EDI__Grey.png' style="width:30px;" /><span class="menutext">Spot EDI</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container body-content" style="padding-top:0px; padding-right:0px; padding-left:0px;">
+        @RenderBody()
+    </div>
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
